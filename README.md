@@ -63,4 +63,4 @@ Common platform‑specific notes and troubleshooting are in `HELP.md`.
 - `docs/` — скриншоты и документация
 
 ## Помощь
-Замечания по платформам и типичные решения — в `HELP.md`.
+Замечания по платформам и типичные решения  — в `HELP.md`.
