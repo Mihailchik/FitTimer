@@ -107,19 +107,28 @@ class _QuickStartCard extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(16),
             onTap: onTap,
-            child: SizedBox(
-              height: 86,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(label,
-                      textAlign: TextAlign.center,
-                      style: T.body(15, weight: 600, color: color)),
-                  const SizedBox(height: 4),
-                  Text(value,
-                      textAlign: TextAlign.center,
-                      style: T.display(28, color: c.tx, height: 1.0)),
-                ],
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 86),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(label,
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: T.body(15, weight: 600, color: color)),
+                    const SizedBox(height: 4),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(value,
+                          textAlign: TextAlign.center,
+                          style: T.display(28, color: c.tx, height: 1.0)),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -131,9 +140,13 @@ class _QuickStartCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
+          Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 12,
+            runSpacing: 4,
             children: [
-              Expanded(child: SectionLabel(s.quickStart)),
+              SectionLabel(s.quickStart),
               Text.rich(TextSpan(children: [
                 TextSpan(text: '${s.total} ', style: T.body(13, color: c.mu)),
                 TextSpan(
@@ -224,38 +237,42 @@ class _TemplateChoice extends StatelessWidget {
       context: context,
       showDragHandle: true,
       sheetAnimationStyle: AnimationStyle.noAnimation,
+      isScrollControlled: true,
+      useSafeArea: true,
       builder: (sheet) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(
-              AppLayout.pageInset, 0, AppLayout.pageInset, 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(template.title, style: T.display(28, color: c.tx)),
-              const SizedBox(height: 4),
-              Text(template.info(s).replaceAll('\n', ' · '),
-                  style: T.body(15, color: c.mu)),
-              const SizedBox(height: 14),
-              PhaseStrip(workout: w, height: 10),
-              const SizedBox(height: 20),
-              PrimaryButton(
-                label: '${s.start} · ${formatClock(w.totalSeconds)}',
-                onPressed: () {
-                  Navigator.pop(sheet);
-                  openRun(context, w);
-                },
-              ),
-              const SizedBox(height: 10),
-              SecondaryButton(
-                label: s.saveAndEdit,
-                icon: AppIcons.edit,
-                onPressed: () {
-                  Navigator.pop(sheet);
-                  _saveAndEdit(context);
-                },
-              ),
-            ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(
+                AppLayout.pageInset, 0, AppLayout.pageInset, 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(template.title, style: T.display(28, color: c.tx)),
+                const SizedBox(height: 4),
+                Text(template.info(s).replaceAll('\n', ' · '),
+                    style: T.body(15, color: c.mu)),
+                const SizedBox(height: 14),
+                PhaseStrip(workout: w, height: 10),
+                const SizedBox(height: 20),
+                PrimaryButton(
+                  label: '${s.start} · ${formatClock(w.totalSeconds)}',
+                  onPressed: () {
+                    Navigator.pop(sheet);
+                    openRun(context, w);
+                  },
+                ),
+                const SizedBox(height: 10),
+                SecondaryButton(
+                  label: s.saveAndEdit,
+                  icon: AppIcons.edit,
+                  onPressed: () {
+                    Navigator.pop(sheet);
+                    _saveAndEdit(context);
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

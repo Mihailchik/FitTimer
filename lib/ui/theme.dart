@@ -199,6 +199,7 @@ ThemeData buildTheme(Brightness brightness) {
   return base.copyWith(
     dividerColor: c.line,
     bottomSheetTheme: BottomSheetThemeData(
+      constraints: const BoxConstraints(maxWidth: 640),
       backgroundColor: c.s1,
       surfaceTintColor: Colors.transparent,
       showDragHandle: true,

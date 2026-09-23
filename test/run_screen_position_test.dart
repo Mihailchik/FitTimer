@@ -9,6 +9,44 @@ import 'package:flutter_timer/ui/widgets/common.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  testWidgets('timer controls describe their actions', (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    final app = await AppState.load();
+    app.updateSettings(app.settings.copyWith(
+      prepSeconds: 0,
+      sound: false,
+      haptics: false,
+      keepAwake: false,
+      backgroundCues: false,
+    ));
+    final workout = Workout.create(name: 'Test', blocks: [
+      WorkBlock.create(name: 'Block', intervals: [
+        WorkInterval.create(name: 'Work', seconds: 30),
+      ]),
+    ]);
+    await tester.pumpWidget(AppScope(
+      state: app,
+      child: MaterialApp(
+        theme: buildTheme(Brightness.light),
+        home: RunScreen(workout: workout),
+      ),
+    ));
+    await tester.pump();
+
+    final topPause = find.byWidgetPredicate(
+        (widget) => widget is RoundIconButton && widget.tooltip == 'Pause and actions');
+    expect(topPause, findsOneWidget);
+    expect(find.descendant(of: topPause, matching: find.byIcon(AppIcons.pause)),
+        findsOneWidget);
+    expect(find.byTooltip('Turn sound on'), findsOneWidget);
+    await tester.tap(find.byTooltip('Turn sound on'));
+    await tester.pump();
+    expect(find.byTooltip('Turn sound off'), findsOneWidget);
+    await tester.tap(topPause);
+    await tester.pump();
+    expect(find.byTooltip('Resume'), findsWidgets);
+  });
+
   testWidgets('timer uses distinct readable dark palette', (tester) async {
     SharedPreferences.setMockInitialValues({});
     final app = await AppState.load();

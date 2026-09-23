@@ -110,6 +110,22 @@ class WorkoutRunner extends ChangeNotifier {
 
   Duration get totalRemaining => totalDuration - totalElapsed;
 
+  /// When each upcoming interval starts, if the workout keeps running
+  /// untouched. The last entry has `next == null` and marks the finish.
+  /// Empty unless running. Used to schedule cues while the app is suspended.
+  List<({DateTime at, Segment? next})> upcomingChanges({int limit = 64}) {
+    if (_status != RunStatus.running) return const [];
+    final out = <({DateTime at, Segment? next})>[];
+    var at = _segmentStart.add(current.duration);
+    for (var i = _index + 1; i <= segments.length && out.length < limit; i++) {
+      final next = i < segments.length ? segments[i] : null;
+      out.add((at: at, next: next));
+      if (next == null) break;
+      at = at.add(next.duration);
+    }
+    return out;
+  }
+
   /// Real time since start, pauses included.
   Duration get wallElapsed => (_finishedAt ?? _clock()).difference(startedAt);
 

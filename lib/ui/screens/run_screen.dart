@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../../data/app_state.dart';
+import '../../engine/background_cues.dart';
 import '../../engine/cue_player.dart';
 import '../../engine/timeline.dart';
 import '../../engine/workout_runner.dart';
@@ -16,8 +17,17 @@ import '../icons.dart';
 import '../widgets/common.dart';
 import 'finish_screen.dart';
 
-void openRun(BuildContext context, Workout workout) {
+Future<void> openRun(BuildContext context, Workout workout) async {
   if (workout.isEmpty) return;
+  final app = AppScope.read(context);
+  // The notification prompt is shown once, before the first workout starts:
+  // it cannot appear from the background, and over a running countdown it
+  // would steal the first seconds.
+  if (app.settings.backgroundCues && !app.settings.notificationsAsked) {
+    await BackgroundCues.instance.requestPermission();
+    app.updateSettings(app.settings.copyWith(notificationsAsked: true));
+    if (!context.mounted) return;
+  }
   Navigator.of(context, rootNavigator: true).push(
     appRoute((_) => RunScreen(workout: workout)),
   );
@@ -71,7 +81,18 @@ class _RunScreenState extends State<RunScreen> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) _runner.tick();
+    if (state == AppLifecycleState.resumed) {
+      BackgroundCues.instance.cancel();
+      _runner.tick();
+    } else if (state == AppLifecycleState.inactive || state == AppLifecycleState.paused) {
+      if (_settings.backgroundCues && _runner.status == RunStatus.running) {
+        BackgroundCues.instance.schedule(
+          _runner.upcomingChanges(limit: BackgroundCues.maxPending),
+          s: S.of(context),
+          sound: _cues.sound,
+        );
+      }
+    }
   }
 
   void _onRunner() {
@@ -124,6 +145,7 @@ class _RunScreenState extends State<RunScreen> with WidgetsBindingObserver {
     _runner.removeListener(_onRunner);
     _runner.dispose();
     _cues.dispose();
+    BackgroundCues.instance.cancel();
     WakelockPlus.disable();
     super.dispose();
   }
@@ -217,8 +239,8 @@ class _RunBody extends StatelessWidget {
             child: Row(
               children: [
                 RoundIconButton(
-                  icon: paused ? AppIcons.play : AppIcons.close,
-                  tooltip: paused ? s.resume : s.close,
+                  icon: paused ? AppIcons.play : AppIcons.pause,
+                  tooltip: paused ? s.resume : s.pauseActions,
                   onPressed: paused ? runner.resume : runner.pause,
                   background: chip,
                   foreground: fg,
@@ -240,7 +262,7 @@ class _RunBody extends StatelessWidget {
                 ),
                 RoundIconButton(
                   icon: soundOn ? AppIcons.soundOn : AppIcons.soundOff,
-                  tooltip: soundOn ? s.soundOn : s.soundOff,
+                  tooltip: soundOn ? s.turnSoundOff : s.turnSoundOn,
                   onPressed: onSound,
                   background: chip,
                   foreground: fg,

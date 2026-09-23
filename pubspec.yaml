@@ -15,16 +15,14 @@ dependencies:
   shared_preferences: ^2.2.2
   wakelock_plus: ^1.8.0
   cupertino_icons: ^1.0.9
-dependency_overrides:
-  audioplayers_darwin: 6.2.0
-
+  flutter_local_notifications: ^22.3.1
+  timezone: ^0.11.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.4.0
-  image: ^4.1.3
 
 flutter:
   uses-material-design: true
@@ -40,7 +38,7 @@ flutter:
         - asset: assets/fonts/Phosphor-Fill.ttf
 
 flutter_launcher_icons:
-  android: true
+  android: false
   ios: true
   remove_alpha_ios: true
   image_path: "assets/icon/app_icon.png"
@@ -48,5 +46,6 @@ flutter_launcher_icons:
 flutter_native_splash:
   color: "#F2F2F7"
   color_dark: "#000000"
-  android: true
+  android: false
   ios: true
+  web: false

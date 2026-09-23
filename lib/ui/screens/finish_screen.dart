@@ -50,8 +50,10 @@ class FinishScreen extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(AppLayout.pageInset, 32, AppLayout.pageInset, 24),
+        child: PageWidth(
+            child: Padding(
+          padding: const EdgeInsets.fromLTRB(
+              AppLayout.pageInset, 32, AppLayout.pageInset, 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -123,7 +125,7 @@ class FinishScreen extends StatelessWidget {
               ),
             ],
           ),
-        ),
+        )),
       ),
     );
   }

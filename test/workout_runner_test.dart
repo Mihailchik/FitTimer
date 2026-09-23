@@ -156,5 +156,24 @@ void main() {
       expect(r.intervalsDone, 1);
       r.dispose();
     });
+
+    test('upcoming changes list every interval start and the finish', () {
+      final r = make(prep: 5, rounds: 2); // 5 prep + 2 x (40 + 20)
+      clock.advance(const Duration(seconds: 2));
+      r.tick();
+      final changes = r.upcomingChanges();
+      final start = clock.now.subtract(const Duration(seconds: 2));
+      expect(changes.map((c) => c.at.difference(start).inSeconds), [5, 45, 65, 105, 125]);
+      expect(changes.map((c) => c.next?.type), [
+        IntervalType.work,
+        IntervalType.rest,
+        IntervalType.work,
+        IntervalType.rest,
+        null,
+      ]);
+      r.pause();
+      expect(r.upcomingChanges(), isEmpty);
+      r.dispose();
+    });
   });
 }

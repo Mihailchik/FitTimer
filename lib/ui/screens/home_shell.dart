@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../l10n/strings.dart';
 import '../icons.dart';
 import '../theme.dart';
+import '../widgets/common.dart';
 import 'history_screen.dart';
 import 'library_screen.dart';
 import 'settings_screen.dart';
@@ -21,9 +22,11 @@ class _HomeShellState extends State<HomeShell> {
   Widget build(BuildContext context) {
     final s = S.of(context);
     return Scaffold(
-      body: IndexedStack(
-        index: _tab,
-        children: const [LibraryScreen(), HistoryScreen(), SettingsScreen()],
+      body: PageWidth(
+        child: IndexedStack(
+          index: _tab,
+          children: const [LibraryScreen(), HistoryScreen(), SettingsScreen()],
+        ),
       ),
       bottomNavigationBar: AppBottomBar(
         selectedIndex: _tab,
@@ -128,7 +131,8 @@ class _NavItem extends StatelessWidget {
                     child: Text(label,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: T.body(13, weight: 600, color: color, height: 1)),
+                        style:
+                            T.body(13, weight: 600, color: color, height: 1)),
                   ),
                 ),
               ],

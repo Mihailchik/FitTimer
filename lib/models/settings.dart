@@ -8,6 +8,10 @@ class AppSettings {
   final bool haptics;
   final bool keepAwake;
   final bool halfwayCue;
+  final bool backgroundCues;
+
+  /// The system notification prompt has been shown once already.
+  final bool notificationsAsked;
   final int prepSeconds;
   final ThemeChoice theme;
   final LanguageChoice language;
@@ -23,6 +27,8 @@ class AppSettings {
     this.haptics = true,
     this.keepAwake = true,
     this.halfwayCue = true,
+    this.backgroundCues = true,
+    this.notificationsAsked = false,
     this.prepSeconds = 10,
     this.theme = ThemeChoice.light,
     this.language = LanguageChoice.system,
@@ -37,6 +43,8 @@ class AppSettings {
     bool? haptics,
     bool? keepAwake,
     bool? halfwayCue,
+    bool? backgroundCues,
+    bool? notificationsAsked,
     int? prepSeconds,
     ThemeChoice? theme,
     LanguageChoice? language,
@@ -50,6 +58,8 @@ class AppSettings {
       haptics: haptics ?? this.haptics,
       keepAwake: keepAwake ?? this.keepAwake,
       halfwayCue: halfwayCue ?? this.halfwayCue,
+      backgroundCues: backgroundCues ?? this.backgroundCues,
+      notificationsAsked: notificationsAsked ?? this.notificationsAsked,
       prepSeconds: prepSeconds ?? this.prepSeconds,
       theme: theme ?? this.theme,
       language: language ?? this.language,
@@ -65,6 +75,8 @@ class AppSettings {
         'haptics': haptics,
         'keepAwake': keepAwake,
         'halfwayCue': halfwayCue,
+        'backgroundCues': backgroundCues,
+        'notificationsAsked': notificationsAsked,
         'prepSeconds': prepSeconds,
         'theme': theme.name,
         'language': language.name,
@@ -83,6 +95,8 @@ class AppSettings {
       haptics: json['haptics'] as bool? ?? d.haptics,
       keepAwake: json['keepAwake'] as bool? ?? d.keepAwake,
       halfwayCue: json['halfwayCue'] as bool? ?? d.halfwayCue,
+      backgroundCues: json['backgroundCues'] as bool? ?? d.backgroundCues,
+      notificationsAsked: json['notificationsAsked'] as bool? ?? d.notificationsAsked,
       prepSeconds: (json['prepSeconds'] as num?)?.toInt() ?? d.prepSeconds,
       theme: pick(ThemeChoice.values, json['theme'], d.theme),
       language: pick(LanguageChoice.values, json['language'], d.language),

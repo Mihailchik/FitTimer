@@ -1,41 +1,43 @@
 # HELP / Troubleshooting
 
-## Быстрый старт
-- `flutter pub get`
-- Запустите эмулятор: `flutter emulators --launch <name>`
-- `flutter run -d <deviceId>`
+## Quick start
 
-## Типичные проблемы
+```bash
+flutter pub get
+cd ios && LANG=en_US.UTF-8 pod install && cd ..
+flutter devices
+flutter run -d <device-id>
+```
 
-### Чёрный экран на Android эмуляторе
-Причина: Impeller/OpenGL на некоторых AVD может давать чёрный экран.
+In Xcode 27 the simulator window lives in **DeviceHub** (`Xcode.app/Contents/Applications/DeviceHub.app`); there is no separate Simulator.app any more.
 
-Решения:
-- `flutter run -d <deviceId> --enable-software-rendering`
-- `flutter run -d <deviceId> --no-enable-impeller`
-- В AVD Manager → Graphics: "Software" или "Compatibility (ANGLE)"; затем Cold Boot.
+## Known problems
 
-### Звук не воспроизводится
-- Убедитесь, что устройство не в режиме без звука.
-- На web — звук может требовать жест взаимодействия (политики автоплея).
-- На Android/iOS — генерируется временный WAV в `systemTemp`, плеер 
-  `audioplayers` воспроизводит файл через `DeviceFileSource`.
+### `pod install` fails with `Unicode Normalization not appropriate for ASCII-8BIT`
+CocoaPods needs a UTF‑8 locale. Run it as `LANG=en_US.UTF-8 pod install` or add `export LANG=en_US.UTF-8` to `~/.zshrc`.
 
-### Иконки выглядят разного размера на Web / не загружаются
-- Причина: дев‑сервер/кэш браузера не подхватывает шрифт Material Icons, в логах виден
-  запрос `assets/FontManifest.json` с ошибкой.
-- Решения:
-  - Полностью перезапустите дев‑сервер: остановите текущий `flutter run -d web-server`,
-    запустите заново.
-  - Выполните жесткую перезагрузку страницы (Cmd/Ctrl+Shift+R), чтобы обновить кэш шрифтов.
-  - Если используете дополнительный прокси/cdn — отключите, проверьте локально.
-  - В коде можно задать единый размер через `Icon(size: 20)` и `iconTheme` в `MaterialApp`.
+### `You have not agreed to the Xcode license agreements`
+Once per Xcode install: `sudo xcodebuild -license accept`.
 
-### Где править последовательность таймера?
-`lib/timer/timer_page.dart`, поле `_sequence`.
+### `flutter build ios --simulator` fails: `Flutter.framework ... does not contain architectures "arm64 x86_64"`
+The generic simulator build asks for Intel slices that current Flutter no longer ships. Build for a concrete simulator instead: `flutter run -d <simulator-id>`.
 
-### Как сделать скриншоты
-- Запустите приложение в debug режиме.
-- Выполните: `flutter screenshot -o docs/screenshot-setup.png -d <deviceId>`.
-- Нажмите "Старт" в приложении.
-- Выполните: `flutter screenshot -o docs/screenshot-running.png -d <deviceId>`.
+### Xcode error `'...Plugin' has different definitions in different modules`
+Stale module cache after a plugin version change:
+```bash
+flutter clean
+rm -rf ~/Library/Developer/Xcode/DerivedData/Runner-*
+flutter pub get && cd ios && LANG=en_US.UTF-8 pod install
+```
+
+### No sound when the screen is locked
+Background cues are notifications: check that notifications are allowed for FitTimer in iOS Settings and that "Cues when locked" is on in the app. Notification sounds follow the ring/silent switch.
+
+### Text looks jagged in the simulator window
+The simulator is shown scaled down, especially on non‑Retina monitors. Zoom the window in, move it to a Retina screen or take a screenshot (`xcrun simctl io booted screenshot shot.png`) to judge real rendering.
+
+## Regenerating assets
+
+- App icon: replace `assets/icon/app_icon.png` (1024×1024, no transparency) and run `dart run flutter_launcher_icons`.
+- Launch screen colours: `flutter_native_splash` section in `pubspec.yaml`, then `dart run flutter_native_splash:create`.
+- Background cue sounds: `dart run tool/gen_notification_sounds.dart`.

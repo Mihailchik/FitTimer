@@ -425,3 +425,16 @@ class TypeSelector extends StatelessWidget {
     );
   }
 }
+
+/// Keeps phone-shaped content readable on iPad: centred, at most [maxWidth].
+class PageWidth extends StatelessWidget {
+  const PageWidth({super.key, required this.child, this.maxWidth = 640});
+  final Widget child;
+  final double maxWidth;
+
+  @override
+  Widget build(BuildContext context) => Align(
+        alignment: Alignment.topCenter,
+        child: ConstrainedBox(constraints: BoxConstraints(maxWidth: maxWidth), child: child),
+      );
+}

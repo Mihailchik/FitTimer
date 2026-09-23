@@ -22,6 +22,8 @@ void main() {
       180,
       scrollable: find.byType(Scrollable).last,
     );
+    await tester.ensureVisible(find.text('Language'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Language'));
     await tester.pumpAndSettle();
     expect(find.text('English'), findsOneWidget);

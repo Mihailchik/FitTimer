@@ -1,61 +1,83 @@
-# FitTimer — simple interval training timer
+# FitTimer
 
-A minimal cross‑platform interval training timer built with Flutter.
-This repository contains a standard Flutter project with app sources and platform files.
+Interval training timer for iPhone and iPad — Tabata, HIIT, EMOM, AMRAP and your own circuits.
+[App Store](https://apps.apple.com/app/id6755115543) · [Privacy Policy](docs/legal/PRIVACY_POLICY.md) · [Terms](docs/legal/TERMS_OF_USE.md) · [Changelog](CHANGELOG.md)
+
+[Русская версия ниже](#fittimer--интервальный-таймер)
 
 ## Features
-- Configure a sequence of blocks and items (exercise/rest)
-- 5‑second preparation pause with a single cue at 00
-- Audio cues: finish and mid‑point of long intervals
-- Material UI with Material 3 support
 
-<!-- Screenshots section removed per request -->
+- **Quick start** — set work, rest and rounds on three wheels and go.
+- **Templates** — Tabata, EMOM, AMRAP, HIIT: start as is or save and edit.
+- **Your workouts** — blocks with repeats, intervals of type work / rest / get ready, drag to reorder, ready-made exercise names.
+- **Workout screen** — the whole screen takes the phase colour, big digits, progress ring, "next up", skip and pause.
+- **Cues** — 3‑2‑1 countdown, start and halfway signals, vibration; plays over your music.
+- **Screen locked? Still audible** — interval changes arrive as sound notifications while the app is in the background.
+- **Exact time** — counted from the clock, not from ticks, so it stays right after pauses and switching apps.
+- **History**, light and dark theme, Russian and English.
+- No account, no ads, no tracking. Data stays on the device.
 
-## Quick Start
-- Install Flutter SDK.
-- Run `flutter pub get`.
-- List devices: `flutter devices` and start: `flutter run -d <deviceId>`.
+## Build
 
-## Audio
-Uses `audioplayers` and generated WAV for playback.
-On web, audio may require a user gesture due to autoplay policies.
+Requirements: Flutter 3.44+, Xcode 27+, CocoaPods, iOS 15+ device or simulator.
 
-## Structure
-- `lib/` — app sources (pages, timer logic, audio)
-- `pubspec.yaml` — dependencies and metadata
-- `docs/` — screenshots and documentation
+```bash
+flutter pub get
+cd ios && LANG=en_US.UTF-8 pod install && cd ..
+flutter run -d <device-id>
+```
 
-## Help
-Common platform‑specific notes and troubleshooting are in `HELP.md`.
+Tests: `flutter test` (timer engine, v1 data migration, layouts on iPhone SE…iPad with large text, UI details).
 
-----
+Build for the App Store: `flutter build ipa` → upload the `.ipa` with Transporter or Xcode Organizer.
 
-# FitTimer — простой таймер интервальных тренировок
+Troubleshooting: see [HELP.md](HELP.md).
 
-Минимальный кроссплатформенный таймер интервальных тренировок на Flutter.
-Репозиторий содержит стандартный Flutter‑проект с исходниками приложения и платформенными файлами.
+## Project layout
+
+```
+lib/
+  engine/   timer engine (clock-based), timeline, cue sounds, background cues
+  models/   workouts, settings, history
+  data/     local storage, v1 migration, templates and name presets
+  l10n/     Russian and English strings
+  ui/       theme, icons, screens and shared widgets
+test/       unit and widget tests
+tool/       gen_notification_sounds.dart — regenerates ios/Runner/Sounds/*.wav
+assets/     app icon source, icon font (Phosphor, MIT)
+docs/       legal pages, store texts and screenshots
+```
+
+After changing `lib/engine/sounds.dart` run `dart run tool/gen_notification_sounds.dart` so the background cues match.
+
+---
+
+# FitTimer — интервальный таймер
+
+Таймер для интервальных тренировок на iPhone и iPad: Tabata, HIIT, EMOM, AMRAP и собственные круговые тренировки.
 
 ## Возможности
-- Настройка последовательности блоков и элементов (упражнение/пауза)
-- Подготовительная пауза 5 секунд с одним сигналом на 00
-- Звуковые сигналы: завершение и середина длинных интервалов
-- Материальный интерфейс, поддержка Material 3
 
-<!-- Разделы со скриншотами и App Store удалены по запросу -->
+- **Быстрый старт** — работа, отдых и раунды на трёх колёсах, и вперёд.
+- **Шаблоны** — Tabata, EMOM, AMRAP, HIIT: запустить сразу или сохранить и поправить.
+- **Свои тренировки** — блоки с повторами, интервалы типа работа / отдых / подготовка, перетаскивание, готовые названия упражнений.
+- **Экран тренировки** — весь экран в цвете фазы, крупные цифры, кольцо прогресса, «дальше», перемотка и пауза.
+- **Сигналы** — отсчёт 3‑2‑1, старт, середина интервала, вибрация; звучат поверх музыки.
+- **Экран погас — всё слышно** — смены интервалов приходят уведомлениями со звуком, пока приложение в фоне.
+- **Точное время** — считается по часам, а не шагами, поэтому не сбивается после паузы и сворачивания.
+- **История**, светлая и тёмная тема, русский и английский.
+- Без регистрации, рекламы и слежки. Данные остаются на устройстве.
 
-## Быстрый старт
-- Установите Flutter SDK.
-- Выполните `flutter pub get`.
-- Посмотрите устройства: `flutter devices` и запустите: `flutter run -d <deviceId>`.
+## Сборка
 
-## Звук
-Используется `audioplayers` и генерация WAV. На web воспроизведение может требовать
-пользовательское действие из‑за политик автоплея.
+Нужны Flutter 3.44+, Xcode 27+, CocoaPods, устройство или симулятор с iOS 15+.
 
-## Структура
-- `lib/` — исходники приложения (страницы, логика таймера, звук)
-- `pubspec.yaml` — зависимости и метаданные
-- `docs/` — скриншоты и документация
+```bash
+flutter pub get
+cd ios && LANG=en_US.UTF-8 pod install && cd ..
+flutter run -d <device-id>
+```
 
-## Помощь
-Замечания по платформам и типичные решения — в `HELP.md`.
+Тесты — `flutter test`. Сборка для стора — `flutter build ipa`. Решение проблем — [HELP.md](HELP.md).
+
+© 2025–2026 Mihailchik. All rights reserved. See [docs/legal/COPYRIGHT.md](docs/legal/COPYRIGHT.md).

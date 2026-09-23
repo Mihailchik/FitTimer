@@ -103,7 +103,8 @@ class _Editor extends StatelessWidget {
     final c = AppColors.of(context);
     return Scaffold(
       body: SafeArea(
-        child: Column(
+        child: PageWidth(
+            child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(4, 4, 8, 4),
@@ -226,7 +227,7 @@ class _Editor extends StatelessWidget {
               ),
             ),
           ],
-        ),
+        )),
       ),
     );
   }

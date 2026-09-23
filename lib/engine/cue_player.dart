@@ -19,6 +19,8 @@ class CuePlayer {
   bool duckMusic;
 
   final Map<String, AudioPlayer> _players = {};
+  Directory? _tempDir;
+  Future<void>? _initFuture;
   bool _ready = false;
 
   static const _files = <String, Uint8List Function()>{
@@ -29,12 +31,15 @@ class CuePlayer {
     'finish': SoundSynth.finish,
   };
 
-  Future<void> init() async {
+  Future<void> init() => _initFuture ??= _initialize();
+
+  Future<void> _initialize() async {
     try {
       await AudioPlayer.global.setAudioContext(AudioContextConfig(
         focus: duckMusic ? AudioContextConfigFocus.duckOthers : AudioContextConfigFocus.mixWithOthers,
       ).build());
       final dir = await Directory.systemTemp.createTemp('fittimer_cues');
+      _tempDir = dir;
       for (final entry in _files.entries) {
         final file = File('${dir.path}/${entry.key}.wav');
         await file.writeAsBytes(entry.value(), flush: true);
@@ -87,9 +92,23 @@ class CuePlayer {
   }
 
   Future<void> dispose() async {
-    for (final p in _players.values) {
-      await p.dispose();
+    await _initFuture;
+    _ready = false;
+    try {
+      for (final p in _players.values) {
+        await p.dispose();
+      }
+    } finally {
+      _players.clear();
+      final dir = _tempDir;
+      _tempDir = null;
+      if (dir != null) {
+        try {
+          await dir.delete(recursive: true);
+        } on FileSystemException catch (e) {
+          debugPrint('CuePlayer temp cleanup failed: $e');
+        }
+      }
     }
-    _players.clear();
   }
 }

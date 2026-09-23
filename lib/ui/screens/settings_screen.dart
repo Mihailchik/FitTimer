@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../data/app_state.dart';
+import '../../engine/background_cues.dart';
 import '../../l10n/strings.dart';
 import '../../models/settings.dart';
 import '../theme.dart';
@@ -41,6 +42,15 @@ class SettingsScreen extends StatelessWidget {
             ),
             _Toggle(label: s.keepAwake, value: st.keepAwake, onChanged: (v) => set(st.copyWith(keepAwake: v))),
             _Toggle(label: s.halfwayCue, hint: s.halfwayCueHint, value: st.halfwayCue, onChanged: (v) => set(st.copyWith(halfwayCue: v))),
+            _Toggle(
+              label: s.backgroundCues,
+              hint: s.backgroundCuesHint,
+              value: st.backgroundCues,
+              onChanged: (v) {
+                set(st.copyWith(backgroundCues: v));
+                if (v) BackgroundCues.instance.requestPermission();
+              },
+            ),
           ]),
           _Group(title: s.general, rows: [
             _Choice<LanguageChoice>(

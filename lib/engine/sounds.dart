@@ -8,29 +8,34 @@ import 'dart:typed_data';
 class SoundSynth {
   static const sampleRate = 44100;
 
-  static Uint8List countdown() => _render([const _Note(880, 0, 110)], gain: 0.55);
+  static const _countdownNotes = [_Note(880, 0, 110)];
+  static const _workNotes = [_Note(880, 0, 120), _Note(1318.5, 110, 320)];
+  static const _restNotes = [_Note(1046.5, 0, 140), _Note(659.3, 130, 360)];
+  static const _halfNotes = [_Note(784, 0, 90), _Note(784, 140, 90)];
+  static const _finishNotes = [
+    _Note(523.3, 0, 180),
+    _Note(659.3, 140, 180),
+    _Note(784, 280, 180),
+    _Note(1046.5, 420, 520),
+  ];
 
-  static Uint8List workStart() => _render([
-        const _Note(880, 0, 120),
-        const _Note(1318.5, 110, 320),
+  static Uint8List countdown() => _render(_countdownNotes, gain: 0.55);
+  static Uint8List workStart() => _render(_workNotes, gain: 0.7);
+  static Uint8List restStart() => _render(_restNotes, gain: 0.6);
+  static Uint8List halfway() => _render(_halfNotes, gain: 0.5);
+  static Uint8List finish() => _render(_finishNotes, gain: 0.65);
+
+  /// "3, 2, 1" ticks one second apart followed by the cue, for notifications
+  /// that fire three seconds before an interval changes while the app is in
+  /// the background.
+  static Uint8List workStartWithCountdown() => _withCountdown(_workNotes);
+  static Uint8List restStartWithCountdown() => _withCountdown(_restNotes);
+  static Uint8List finishWithCountdown() => _withCountdown(_finishNotes);
+
+  static Uint8List _withCountdown(List<_Note> cue) => _render([
+        for (final t in const [0, 1000, 2000]) _Note(880, t, 110, 0.7),
+        for (final n in cue) _Note(n.freq, n.startMs + 3000, n.lengthMs),
       ], gain: 0.7);
-
-  static Uint8List restStart() => _render([
-        const _Note(1046.5, 0, 140),
-        const _Note(659.3, 130, 360),
-      ], gain: 0.6);
-
-  static Uint8List halfway() => _render([
-        const _Note(784, 0, 90),
-        const _Note(784, 140, 90),
-      ], gain: 0.5);
-
-  static Uint8List finish() => _render([
-        const _Note(523.3, 0, 180),
-        const _Note(659.3, 140, 180),
-        const _Note(784, 280, 180),
-        const _Note(1046.5, 420, 520),
-      ], gain: 0.65);
 
   static Uint8List _render(List<_Note> notes, {required double gain}) {
     final endMs = notes.map((n) => n.startMs + n.lengthMs).reduce(max);
@@ -44,7 +49,7 @@ class SoundSynth {
         final t = i / sampleRate;
         final env = (i < attack ? i / attack : 1.0) * exp(-5.0 * i / len);
         final wave = sin(2 * pi * n.freq * t) + 0.25 * sin(4 * pi * n.freq * t);
-        mix[start + i] += wave * env;
+        mix[start + i] += wave * env * n.amp;
       }
     }
     var peak = 0.0;
@@ -88,5 +93,6 @@ class _Note {
   final double freq;
   final int startMs;
   final int lengthMs;
-  const _Note(this.freq, this.startMs, this.lengthMs);
+  final double amp;
+  const _Note(this.freq, this.startMs, this.lengthMs, [this.amp = 1.0]);
 }

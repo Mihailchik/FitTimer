@@ -103,11 +103,14 @@ class S {
   String get restartInterval => _('Заново', 'Restart');
   String get endWorkout => _('Завершить', 'End workout');
   String get pause => _('Пауза', 'Pause');
+  String get pauseActions => _('Пауза и действия', 'Pause and actions');
   String get previous => _('Предыдущий интервал', 'Previous interval');
   String get nextInterval => _('Следующий интервал', 'Next interval');
   String get close => _('Закрыть', 'Close');
   String get soundOn => _('Звук включён', 'Sound on');
   String get soundOff => _('Звук выключен', 'Sound off');
+  String get turnSoundOff => _('Выключить звук', 'Turn sound off');
+  String get turnSoundOn => _('Включить звук', 'Turn sound on');
   String roundOf(int r, int n) => ru ? 'Раунд $r из $n' : 'Round $r of $n';
   String nowDoing(String name) => ru ? 'Сейчас: $name' : 'Up: $name';
 
@@ -153,6 +156,14 @@ class S {
   String get langSystem => _('Как в системе', 'System');
   String get off => _('Выкл', 'Off');
   String get version => _('Версия', 'Version');
+
+  // Background cues
+  String get backgroundCues => _('Сигналы при блокировке', 'Cues when locked');
+  String get backgroundCuesHint => _('Уведомления со звуком, если экран погас или открыто другое приложение',
+      'Sound notifications when the screen is off or another app is open');
+  String get bgInThree => _('Через 3 секунды', 'In 3 seconds');
+  String get bgFinishTitle => _('Финиш', 'Finish');
+  String get bgFinishBody => _('Через 3 секунды тренировка закончится', 'Workout ends in 3 seconds');
 
   static String _plural(int n, String one, String few, String many) {
     final m10 = n % 10, m100 = n % 100;

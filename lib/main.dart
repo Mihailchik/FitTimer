@@ -47,6 +47,12 @@ class FitTimerApp extends StatelessWidget {
             },
             supportedLocales: const [Locale('en'), Locale('ru')],
             localizationsDelegates: GlobalMaterialLocalizations.delegates,
+            // Large accessibility text sizes are honoured up to a point where
+            // the timer layouts still fit on the smallest supported iPhone.
+            builder: (context, child) => MediaQuery.withClampedTextScaling(
+              maxScaleFactor: 1.35,
+              child: child!,
+            ),
             home: const HomeShell(),
           );
         },
