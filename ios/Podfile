@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
-platform :ios, '13.0'
+platform :ios, '15.0'
 
 # Suppress warnings from third-party pods to keep builds clean
 inhibit_all_warnings!
@@ -45,7 +45,7 @@ post_install do |installer|
     # Force a consistent Swift toolchain to avoid Swift 6 name lookup issues
     target.build_configurations.each do |config|
       config.build_settings['SWIFT_VERSION'] = '5.9'
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
       # Do not fail builds on warnings and suppress Swift warnings from pods
       config.build_settings['SWIFT_TREAT_WARNINGS_AS_ERRORS'] = 'NO'
       config.build_settings['SWIFT_SUPPRESS_WARNINGS'] = 'YES'

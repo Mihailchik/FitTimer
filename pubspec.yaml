@@ -1,7 +1,7 @@
 name: flutter_timer
-description: Minimal lib-only Flutter timer; platforms generated per device
+description: FitTimer — interval training timer
 publish_to: 'none'
-version: 1.1.1+111
+version: 2.0.0+200
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
@@ -13,7 +13,8 @@ dependencies:
     sdk: flutter
   audioplayers: ^6.0.0
   shared_preferences: ^2.2.2
-  
+  wakelock_plus: ^1.8.0
+  cupertino_icons: ^1.0.9
 dependency_overrides:
   audioplayers_darwin: 6.2.0
 
@@ -27,20 +28,25 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/icon/
+  fonts:
+    # Phosphor icons (MIT), see assets/fonts/LICENSE-Phosphor.txt
+    - family: PhosphorBold
+      fonts:
+        - asset: assets/fonts/Phosphor-Bold.ttf
+    - family: PhosphorFill
+      fonts:
+        - asset: assets/fonts/Phosphor-Fill.ttf
 
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path_ios: "web/icons/app-icon-1024.png"
-  image_path: "web/icons/app-icon-1024.png"
-  adaptive_icon_background: "#FFFFFF"
-  adaptive_icon_foreground: "web/icons/app-icon-1024.png"
+  remove_alpha_ios: true
+  image_path: "assets/icon/app_icon.png"
 
 flutter_native_splash:
-  color: "#FFFFFF"
-  image: "web/icons/app-icon-1024.png"
+  color: "#F2F2F7"
+  color_dark: "#000000"
   android: true
   ios: true
-  android_12:
-    image: "web/icons/app-icon-1024.png"
-    icon_background_color: "#FFFFFF"

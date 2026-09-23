@@ -1,27 +1,43 @@
-# lib-only repository view: keep only lib/ in VCS
-# Ignore everything by default
-/*
-# Keep .gitignore itself
-!.gitignore
-# Keep pubspec for dependencies
-!pubspec.yaml
-# Keep lib sources
-!lib/
-# Keep documentation and screenshots
-!README.md
-!HELP.md
-!CHANGELOG.md
-!docs/
-# Do not track local experimental folders
-# Dogs/ — локальная папка, исключаем из репозитория
-# Чтобы оставить файлы локально, используйте git rm --cached
-# (см. коммит в данной ветке)
-#
-# Исключаем Dogs из списка сохраняемых
-# (по умолчанию /* уже игнорирует всё, а ! снимает игнор)
-# Просто убираем правило !Dogs/
-!ios/Runner/Info.plist
-!ios/Runner.xcodeproj/project.pbxproj
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
 
-# Explicitly ignore local VS Code settings
-/.vscode/
+# IntelliJ / VS Code
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Symbolication / obfuscation
+app.*.symbols
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Local notes
+/Dogs/
