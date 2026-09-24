@@ -10,7 +10,7 @@ Interval training timer for iPhone and iPad — Tabata, HIIT, EMOM, AMRAP and yo
 - **Quick start** — set work, rest and rounds on three wheels and go.
 - **Templates** — Tabata, EMOM, AMRAP, HIIT: start as is or save and edit.
 - **Your workouts** — blocks with repeats, intervals of type work / rest / get ready, drag to reorder, ready-made exercise names.
-- **Workout screen** — the whole screen takes the phase colour, big digits, progress ring, "next up", skip and pause.
+- **Workout screen** — the screen takes the phase colour (bright in the light theme, deep tint in the dark one), big digits, progress ring, "next up", skip and pause.
 - **Cues** — 3‑2‑1 countdown, start and halfway signals, vibration; plays over your music.
 - **Screen locked? Still audible** — interval changes arrive as sound notifications while the app is in the background.
 - **Exact time** — counted from the clock, not from ticks, so it stays right after pauses and switching apps.
@@ -61,7 +61,7 @@ After changing `lib/engine/sounds.dart` run `dart run tool/gen_notification_soun
 - **Быстрый старт** — работа, отдых и раунды на трёх колёсах, и вперёд.
 - **Шаблоны** — Tabata, EMOM, AMRAP, HIIT: запустить сразу или сохранить и поправить.
 - **Свои тренировки** — блоки с повторами, интервалы типа работа / отдых / подготовка, перетаскивание, готовые названия упражнений.
-- **Экран тренировки** — весь экран в цвете фазы, крупные цифры, кольцо прогресса, «дальше», перемотка и пауза.
+- **Экран тренировки** — экран в цвете фазы (яркий в светлой теме, глубокий оттенок в тёмной), крупные цифры, кольцо прогресса, «дальше», перемотка и пауза.
 - **Сигналы** — отсчёт 3‑2‑1, старт, середина интервала, вибрация; звучат поверх музыки.
 - **Экран погас — всё слышно** — смены интервалов приходят уведомлениями со звуком, пока приложение в фоне.
 - **Точное время** — считается по часам, а не шагами, поэтому не сбивается после паузы и сворачивания.

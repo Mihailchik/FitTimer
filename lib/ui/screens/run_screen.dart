@@ -277,8 +277,11 @@ class _RunBody extends StatelessWidget {
               onTap: runner.togglePause,
               child: LayoutBuilder(
                 builder: (context, box) {
+                  // Phones top out at 340; iPad gets a ring that fills its
+                  // larger screen instead of a small dial in empty space.
+                  final maxRing = box.maxWidth >= 700 ? 560.0 : 340.0;
                   final ring = min(box.maxWidth - 56, box.maxHeight - 220)
-                      .clamp(160.0, 340.0);
+                      .clamp(160.0, maxRing);
                   final center = box.maxHeight / 2;
                   return SizedBox.expand(
                     child: Stack(
@@ -322,8 +325,10 @@ class _RunBody extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.all(ring * 0.12),
                                 child: FittedBox(
+                                  // 170 on a 340pt phone ring; grows with
+                                  // the ring on iPad.
                                   child: Text(digits,
-                                      style: T.display(170,
+                                      style: T.display(ring * 0.5,
                                           color: fg, height: 1, spacing: -2)),
                                 ),
                               ),
@@ -336,7 +341,7 @@ class _RunBody extends StatelessWidget {
                           top: center + ring / 2 + 16,
                           child: Center(
                             child: SizedBox(
-                              width: min(box.maxWidth - 24, 300),
+                              width: min(box.maxWidth - 24, max(300.0, ring)),
                               child: Container(
                                 height: 48,
                                 padding:
