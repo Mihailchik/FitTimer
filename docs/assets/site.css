@@ -43,9 +43,19 @@ header.top .name { font-weight: 700; font-size: 20px; }
 }
 .langswitch button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
 
-.shots { display: flex; gap: 12px; overflow-x: auto; margin: 28px 0; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.shots { display: flex; gap: 12px; overflow-x: auto; margin: 28px 0 4px; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
 .shots::-webkit-scrollbar { display: none; }
 .shots img { height: 380px; width: auto; border-radius: 20px; border: 1px solid var(--line); flex-shrink: 0; }
+
+.hero-panel {
+  background: linear-gradient(180deg, var(--card) 0%, var(--bg) 100%);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 32px 24px 20px;
+  margin: 8px 0 32px;
+}
+.hero-panel .hero { margin-top: 0; }
+.hero-panel .shots { margin-bottom: 0; }
 nav.crumb { margin: 20px 0 32px; font-size: 14px; color: var(--mu); }
 nav.crumb a { color: var(--mu); text-decoration: none; }
 nav.crumb a:hover { text-decoration: underline; }
