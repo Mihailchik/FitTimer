@@ -14,7 +14,7 @@ The name "FitTimer" alone is taken in the App Store; try the names below, fall b
 **Подзаголовок:** Tabata, HIIT, EMOM и круги
 
 **Рекламный текст:**
-Новая версия: тренировки из блоков, шаблоны, большой цветной экран и сигналы даже при заблокированном телефоне.
+Тренировки из блоков и готовые шаблоны Tabata, HIIT, EMOM. Большой цветной экран и сигналы даже при заблокированном телефоне.
 
 **Ключевые слова:**
 таймер,интервалы,табата,tabata,hiit,emom,amrap,тренировка,круговая,фитнес,кроссфит,бокс,раунды
@@ -64,7 +64,7 @@ Tabata, EMOM, AMRAP и HIIT уже готовы. Запустите как ес�
 **Subtitle:** Tabata, HIIT, EMOM & circuits
 
 **Promotional text:**
-All-new version: workouts built from blocks, templates, a big colour-coded screen and cues even when your phone is locked.
+Workouts built from blocks, plus ready-made Tabata, HIIT and EMOM templates. A big colour screen and cues even with the phone locked.
 
 **Keywords:**
 interval,timer,tabata,hiit,emom,amrap,workout,circuit,crossfit,boxing,rounds,gym,training,stopwatch

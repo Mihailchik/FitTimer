@@ -11,58 +11,90 @@
 <body>
 <main>
   <header class="top">
-    <img src="app_icon.png" alt="Иконка FitTimer">
-    <div>
+    <a class="home-link" href="index.html">
+      <img src="app_icon.png" alt="Иконка FitTimer">
       <div class="name">FitTimer</div>
-      <div class="updated" style="margin:0">Интервальный таймер · Interval timer</div>
+    </a>
+    <div class="langswitch" role="group" aria-label="Language / Язык">
+      <button type="button" data-setlang="ru" aria-pressed="true">RU</button>
+      <button type="button" data-setlang="en" aria-pressed="false">EN</button>
     </div>
   </header>
 
-  <h1 class="hero" style="margin-top:28px">Тренируйтесь по таймеру, не глядя в телефон</h1>
-  <p class="lede">Tabata, HIIT, EMOM, AMRAP и свои круговые тренировки. Весь экран в цвете фазы, звук поверх музыки, сигналы даже при заблокированном экране.</p>
+  <div data-lang-ru>
+    <h1 class="hero" style="margin-top:28px">Тренируйтесь по таймеру, не глядя в телефон</h1>
+    <p class="lede">Tabata, HIIT, EMOM, AMRAP и свои круговые тренировки. Весь экран в цвете фазы, звук поверх музыки, сигналы даже при заблокированном экране.</p>
 
-  <div class="actions">
-    <a class="button" href="https://apps.apple.com/app/id6755115543">Скачать в App Store</a>
-    <a class="button secondary" href="support.html">Поддержка</a>
+    <div class="actions">
+      <a class="button" href="https://apps.apple.com/app/id6755115543">Скачать в App Store</a>
+      <a class="button secondary" href="support.html">Поддержка</a>
+    </div>
+
+    <div class="shots">
+      <img src="store/screenshots/iphone_6.9/ru/ru_iphone_01_home.png" alt="Главный экран FitTimer" loading="lazy">
+      <img src="store/screenshots/iphone_6.9/ru/ru_iphone_02_run_work.png" alt="Экран тренировки FitTimer" loading="lazy">
+      <img src="store/screenshots/iphone_6.9/ru/ru_iphone_04_editor.png" alt="Редактор тренировки FitTimer" loading="lazy">
+    </div>
+
+    <section class="card">
+      <h2>Что умеет</h2>
+      <ul>
+        <li>Быстрый старт: работа, отдых, раунды — и вперёд.</li>
+        <li>Шаблоны Tabata, EMOM, AMRAP, HIIT и свои тренировки из блоков.</li>
+        <li>Весь экран в цвете фазы, крупные цифры, «что дальше».</li>
+        <li>Отсчёт 3‑2‑1, вибрация, звук поверх музыки и сигналы при заблокированном экране.</li>
+        <li>История, светлая и тёмная тема, русский и английский.</li>
+        <li>Без регистрации, рекламы и сбора данных.</li>
+      </ul>
+    </section>
+
+    <nav class="pillnav">
+      <a href="legal/privacy.html">Политика конфиденциальности</a>
+      <a href="legal/terms.html">Условия использования</a>
+      <a href="support.html">Поддержка</a>
+      <a href="https://github.com/Mihailchik/FitTimer">Исходный код</a>
+    </nav>
   </div>
 
-  <section class="card">
-    <h2>Что умеет</h2>
-    <ul>
-      <li>Быстрый старт: работа, отдых, раунды — и вперёд.</li>
-      <li>Шаблоны Tabata, EMOM, AMRAP, HIIT и свои тренировки из блоков.</li>
-      <li>Весь экран в цвете фазы, крупные цифры, «что дальше».</li>
-      <li>Отсчёт 3‑2‑1, вибрация, звук поверх музыки и сигналы при заблокированном экране.</li>
-      <li>История, светлая и тёмная тема, русский и английский.</li>
-      <li>Без регистрации, рекламы и сбора данных.</li>
-    </ul>
-  </section>
+  <div data-lang-en>
+    <h1 class="hero" style="margin-top:28px">Train by the timer, not by your phone</h1>
+    <p class="lede">Tabata, HIIT, EMOM, AMRAP and your own circuit workouts. Full-screen phase colour, sound over music, cues even when the screen is locked.</p>
 
-  <section class="card">
-    <h2>What it does</h2>
-    <ul>
-      <li>Quick start: work, rest, rounds — go.</li>
-      <li>Tabata, EMOM, AMRAP, HIIT templates and your own block-based workouts.</li>
-      <li>Full-screen phase colour, huge digits, "next up".</li>
-      <li>3‑2‑1 countdown, vibration, sound over music and cues while the screen is locked.</li>
-      <li>History, light and dark theme, English and Russian.</li>
-      <li>No account, no ads, no data collection.</li>
-    </ul>
-  </section>
+    <div class="actions">
+      <a class="button" href="https://apps.apple.com/app/id6755115543">Get it on the App Store</a>
+      <a class="button secondary" href="support.html#en">Support</a>
+    </div>
 
-  <nav class="pillnav">
-    <a href="legal/privacy.html">Политика конфиденциальности</a>
-    <a href="legal/privacy.html#en">Privacy Policy</a>
-    <a href="legal/terms.html">Условия использования</a>
-    <a href="legal/terms.html#en">Terms of Use</a>
-    <a href="support.html">Поддержка / Support</a>
-    <a href="https://github.com/Mihailchik/FitTimer">Исходный код · Source</a>
-  </nav>
+    <div class="shots">
+      <img src="store/screenshots/iphone_6.9/en/en_iphone_01_home.png" alt="FitTimer home screen" loading="lazy">
+      <img src="store/screenshots/iphone_6.9/en/en_iphone_02_run_work.png" alt="FitTimer workout screen" loading="lazy">
+      <img src="store/screenshots/iphone_6.9/en/en_iphone_04_editor.png" alt="FitTimer workout editor" loading="lazy">
+    </div>
+
+    <section class="card">
+      <h2>What it does</h2>
+      <ul>
+        <li>Quick start: work, rest, rounds — go.</li>
+        <li>Tabata, EMOM, AMRAP, HIIT templates and your own block-based workouts.</li>
+        <li>Full-screen phase colour, huge digits, "next up".</li>
+        <li>3‑2‑1 countdown, vibration, sound over music and cues while the screen is locked.</li>
+        <li>History, light and dark theme, English and Russian.</li>
+        <li>No account, no ads, no data collection.</li>
+      </ul>
+    </section>
+
+    <nav class="pillnav">
+      <a href="legal/privacy.html#en">Privacy Policy</a>
+      <a href="legal/terms.html#en">Terms of Use</a>
+      <a href="support.html#en">Support</a>
+      <a href="https://github.com/Mihailchik/FitTimer">Source code</a>
+    </nav>
+  </div>
 
   <footer>
-    © 2025–2026 Mihailchik ·
-    <a href="https://github.com/Mihailchik/FitTimer">github.com/Mihailchik/FitTimer</a>
+    © 2025–2026 Mihailchik · <a href="https://github.com/Mihailchik/FitTimer">github.com/Mihailchik/FitTimer</a> · Made by <a href="https://voidstudio.top">Void Studio</a>
   </footer>
 </main>
+<script src="assets/site.js"></script>
 </body>
 </html>

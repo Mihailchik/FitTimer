@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Политика конфиденциальности FitTimer</title>
-  <meta name="description" content="FitTimer privacy policy: no account, no ads, no data collection. All data stays on your device.">
+  <meta name="description" content="FitTimer privacy policy: no account, no ads, no data collection. Everything stays on your device.">
   <link rel="icon" href="../app_icon.png">
   <link rel="stylesheet" href="../assets/site.css">
 </head>
@@ -15,15 +15,16 @@
       <img src="../app_icon.png" alt="Иконка FitTimer">
       <div class="name">FitTimer</div>
     </a>
+    <div class="langswitch" role="group" aria-label="Language / Язык">
+      <button type="button" data-setlang="ru" aria-pressed="true">RU</button>
+      <button type="button" data-setlang="en" aria-pressed="false">EN</button>
+    </div>
   </header>
-  <nav class="crumb"><a href="../index.html">FitTimer</a> / Политика конфиденциальности · Privacy Policy</nav>
 
-  <section class="lang" id="ru">
-    <h2 class="flag">Русский</h2>
+  <div data-lang-ru>
+    <nav class="crumb"><a href="../index.html">FitTimer</a> / Политика конфиденциальности</nav>
     <h1>Политика конфиденциальности FitTimer</h1>
     <p class="updated">Последнее обновление: 23.09.2026</p>
-
-    <p>FitTimer — таймер для интервальных тренировок. Приложение не требует регистрации, не показывает рекламу и не собирает персональные данные.</p>
 
     <div class="card">
       <h2>Какие данные хранятся</h2>
@@ -57,16 +58,14 @@
 
     <div class="card">
       <h2>Контакты</h2>
-      <p>Вопросы и обращения: <a href="../support.html">страница поддержки</a> или <a href="https://github.com/Mihailchik/FitTimer/issues">github.com/Mihailchik/FitTimer/issues</a>.</p>
+      <p><a href="../support.html">Страница поддержки</a> или <a href="https://github.com/Mihailchik/FitTimer/issues">github.com/Mihailchik/FitTimer/issues</a>.</p>
     </div>
-  </section>
+  </div>
 
-  <section class="lang" id="en">
-    <h2 class="flag">English</h2>
+  <div data-lang-en>
+    <nav class="crumb"><a href="../index.html">FitTimer</a> / Privacy Policy</nav>
     <h1>FitTimer Privacy Policy</h1>
     <p class="updated">Last updated: September 23, 2026</p>
-
-    <p>FitTimer is an interval training timer. It needs no account, shows no ads and does not collect personal data.</p>
 
     <div class="card">
       <h2>Data stored</h2>
@@ -100,11 +99,12 @@
 
     <div class="card">
       <h2>Contact</h2>
-      <p>Questions and requests: <a href="../support.html">support page</a> or <a href="https://github.com/Mihailchik/FitTimer/issues">github.com/Mihailchik/FitTimer/issues</a>.</p>
+      <p><a href="../support.html#en">Support page</a> or <a href="https://github.com/Mihailchik/FitTimer/issues">github.com/Mihailchik/FitTimer/issues</a>.</p>
     </div>
-  </section>
+  </div>
 
-  <footer>© 2025–2026 Mihailchik · <a href="../index.html">FitTimer</a></footer>
+  <footer>© 2025–2026 Mihailchik · <a href="../index.html">FitTimer</a> · Made by <a href="https://voidstudio.top">Void Studio</a></footer>
 </main>
+<script src="../assets/site.js"></script>
 </body>
 </html>

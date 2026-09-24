@@ -28,10 +28,24 @@ body {
 }
 main { max-width: 720px; margin: 0 auto; padding: 40px 20px 64px; }
 a { color: var(--tx); }
-header.top { display: flex; gap: 16px; align-items: center; margin-bottom: 8px; }
+header.top { display: flex; gap: 16px; align-items: center; justify-content: space-between; margin-bottom: 8px; }
 header.top img { width: 56px; height: 56px; border-radius: 14px; flex-shrink: 0; }
 header.top a.home-link { display: flex; gap: 16px; align-items: center; text-decoration: none; color: inherit; }
 header.top .name { font-weight: 700; font-size: 20px; }
+
+/* Language switch */
+[data-lang-en] { display: none; }
+.langswitch { display: inline-flex; gap: 2px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 3px; flex-shrink: 0; }
+.langswitch button {
+  border: 0; background: transparent; color: var(--mu);
+  font: inherit; font-weight: 700; font-size: 13px;
+  padding: 7px 14px; border-radius: 9px; cursor: pointer; -webkit-appearance: none;
+}
+.langswitch button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+
+.shots { display: flex; gap: 12px; overflow-x: auto; margin: 28px 0; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.shots::-webkit-scrollbar { display: none; }
+.shots img { height: 380px; width: auto; border-radius: 20px; border: 1px solid var(--line); flex-shrink: 0; }
 nav.crumb { margin: 20px 0 32px; font-size: 14px; color: var(--mu); }
 nav.crumb a { color: var(--mu); text-decoration: none; }
 nav.crumb a:hover { text-decoration: underline; }
@@ -79,8 +93,5 @@ li { margin: 6px 0; }
   font-size: 14px;
   font-weight: 600;
 }
-section.lang { margin-top: 40px; }
-section.lang > h2.flag { font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--mu); margin: 0 0 16px; border-top: 1px solid var(--line); padding-top: 32px; }
-section.lang:first-of-type > h2.flag { border-top: none; padding-top: 0; }
 footer { color: var(--mu); font-size: 13px; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); }
 footer a { color: var(--mu); }

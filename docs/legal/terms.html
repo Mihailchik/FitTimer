@@ -15,11 +15,14 @@
       <img src="../app_icon.png" alt="Иконка FitTimer">
       <div class="name">FitTimer</div>
     </a>
+    <div class="langswitch" role="group" aria-label="Language / Язык">
+      <button type="button" data-setlang="ru" aria-pressed="true">RU</button>
+      <button type="button" data-setlang="en" aria-pressed="false">EN</button>
+    </div>
   </header>
-  <nav class="crumb"><a href="../index.html">FitTimer</a> / Условия использования · Terms of Use</nav>
 
-  <section class="lang" id="ru">
-    <h2 class="flag">Русский</h2>
+  <div data-lang-ru>
+    <nav class="crumb"><a href="../index.html">FitTimer</a> / Условия использования</nav>
     <h1>Условия использования FitTimer</h1>
     <p class="updated">Последнее обновление: 23.09.2026</p>
 
@@ -57,10 +60,10 @@
       <h2>Контакты</h2>
       <p><a href="../support.html">Страница поддержки</a> или <a href="https://github.com/Mihailchik/FitTimer/issues">github.com/Mihailchik/FitTimer/issues</a>.</p>
     </div>
-  </section>
+  </div>
 
-  <section class="lang" id="en">
-    <h2 class="flag">English</h2>
+  <div data-lang-en>
+    <nav class="crumb"><a href="../index.html">FitTimer</a> / Terms of Use</nav>
     <h1>FitTimer Terms of Use</h1>
     <p class="updated">Last updated: September 23, 2026</p>
 
@@ -96,11 +99,12 @@
 
     <div class="card">
       <h2>Contact</h2>
-      <p><a href="../support.html">Support page</a> or <a href="https://github.com/Mihailchik/FitTimer/issues">github.com/Mihailchik/FitTimer/issues</a>.</p>
+      <p><a href="../support.html#en">Support page</a> or <a href="https://github.com/Mihailchik/FitTimer/issues">github.com/Mihailchik/FitTimer/issues</a>.</p>
     </div>
-  </section>
+  </div>
 
-  <footer>© 2025–2026 Mihailchik · <a href="../index.html">FitTimer</a></footer>
+  <footer>© 2025–2026 Mihailchik · <a href="../index.html">FitTimer</a> · Made by <a href="https://voidstudio.top">Void Studio</a></footer>
 </main>
+<script src="../assets/site.js"></script>
 </body>
 </html>
