@@ -5,38 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FitTimer — интервальный таймер</title>
   <meta name="description" content="FitTimer — простой и точный таймер для интервальных тренировок: Tabata, HIIT, EMOM, AMRAP и свои круговые тренировки.">
-  <style>
-    :root { --bg: #F2F2F7; --card: #FFFFFF; --tx: #000000; --mu: #6C6C70; --line: #E5E5EA; --accent: #C8F03C; --on-accent: #10120B; }
-    @media (prefers-color-scheme: dark) {
-      :root { --bg: #000000; --card: #1C1C1E; --tx: #FFFFFF; --mu: #98989F; --line: #38383A; }
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: var(--tx); font: 17px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif; }
-    main { max-width: 720px; margin: 0 auto; padding: 48px 20px 64px; }
-    header { display: flex; gap: 20px; align-items: center; margin-bottom: 28px; }
-    header img { width: 96px; height: 96px; border-radius: 22px; }
-    h1 { margin: 0; font-size: 34px; line-height: 1.15; }
-    header p { margin: 4px 0 0; color: var(--mu); }
-    .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; margin: 16px 0; }
-    ul { margin: 0; padding-left: 20px; }
-    li { margin: 6px 0; }
-    .button { display: inline-block; background: var(--accent); color: var(--on-accent); text-decoration: none; font-weight: 600; padding: 14px 22px; border-radius: 14px; }
-    nav a { color: var(--mu); margin-right: 18px; }
-    h2 { font-size: 20px; margin: 0 0 8px; }
-    footer { color: var(--mu); font-size: 14px; margin-top: 32px; }
-  </style>
+  <link rel="icon" href="app_icon.png">
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 <main>
-  <header>
+  <header class="top">
     <img src="app_icon.png" alt="Иконка FitTimer">
     <div>
-      <h1>FitTimer</h1>
-      <p>Интервальный таймер · Interval timer</p>
+      <div class="name">FitTimer</div>
+      <div class="updated" style="margin:0">Интервальный таймер · Interval timer</div>
     </div>
   </header>
 
-  <p><a class="button" href="https://apps.apple.com/app/id6755115543">Скачать в App Store</a></p>
+  <h1 class="hero" style="margin-top:28px">Тренируйтесь по таймеру, не глядя в телефон</h1>
+  <p class="lede">Tabata, HIIT, EMOM, AMRAP и свои круговые тренировки. Весь экран в цвете фазы, звук поверх музыки, сигналы даже при заблокированном экране.</p>
+
+  <div class="actions">
+    <a class="button" href="https://apps.apple.com/app/id6755115543">Скачать в App Store</a>
+    <a class="button secondary" href="support.html">Поддержка</a>
+  </div>
 
   <section class="card">
     <h2>Что умеет</h2>
@@ -62,13 +50,19 @@
     </ul>
   </section>
 
-  <nav>
-    <a href="legal/PRIVACY_POLICY.html">Политика конфиденциальности / Privacy Policy</a>
-    <a href="legal/TERMS_OF_USE.html">Условия / Terms</a>
-    <a href="https://github.com/Mihailchik/flutter_timer_Test/issues">Поддержка / Support</a>
+  <nav class="pillnav">
+    <a href="legal/privacy.html">Политика конфиденциальности</a>
+    <a href="legal/privacy.html#en">Privacy Policy</a>
+    <a href="legal/terms.html">Условия использования</a>
+    <a href="legal/terms.html#en">Terms of Use</a>
+    <a href="support.html">Поддержка / Support</a>
+    <a href="https://github.com/Mihailchik/FitTimer">Исходный код · Source</a>
   </nav>
 
-  <footer>© 2025–2026 Mihailchik</footer>
+  <footer>
+    © 2025–2026 Mihailchik ·
+    <a href="https://github.com/Mihailchik/FitTimer">github.com/Mihailchik/FitTimer</a>
+  </footer>
 </main>
 </body>
 </html>

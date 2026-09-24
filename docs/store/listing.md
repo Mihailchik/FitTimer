@@ -3,7 +3,7 @@
 Paste into App Store Connect → App Information / Version. Limits: name 30, subtitle 30, promotional text 170, keywords 100 (comma separated, no spaces), description 4000.
 
 Category: Health & Fitness (primary), Sports (secondary). Price: free. Age rating: 4+ (answer "No/None" to every question). App Privacy: **Data Not Collected**.
-Support URL: https://github.com/Mihailchik/flutter_timer_Test/issues · Privacy Policy URL: GitHub Pages page of `docs/legal/PRIVACY_POLICY.md` (see docs/index.html).
+Support URL: https://mihailchik.github.io/FitTimer/support.html · Privacy Policy URL: https://mihailchik.github.io/FitTimer/legal/privacy.html
 
 The name "FitTimer" alone is taken in the App Store; try the names below, fall back to the current "FitTimer999".
 

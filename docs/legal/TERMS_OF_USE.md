@@ -8,7 +8,7 @@
 - **Отказ от гарантий.** Приложение предоставляется «как есть». Мы не гарантируем безошибочную и непрерывную работу.
 - **Ограничение ответственности.** В максимально допустимой законом степени мы не несём ответственности за косвенные убытки, связанные с использованием приложения.
 - **Изменения.** Условия могут обновляться; актуальная версия всегда на этой странице.
-- **Контакты.** https://github.com/Mihailchik/flutter_timer_Test/issues
+- **Контакты.** https://github.com/Mihailchik/FitTimer/issues
 
 ---
 
@@ -22,4 +22,4 @@ Last updated: September 23, 2026
 - **No warranty.** The app is provided "as is", without guarantees of error-free or uninterrupted operation.
 - **Limitation of liability.** To the maximum extent permitted by law we are not liable for indirect damages arising from the use of the app.
 - **Changes.** These terms may be updated; the current version is always on this page.
-- **Contact.** https://github.com/Mihailchik/flutter_timer_Test/issues
+- **Contact.** https://github.com/Mihailchik/FitTimer/issues

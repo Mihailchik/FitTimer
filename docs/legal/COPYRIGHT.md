@@ -7,7 +7,7 @@
 - распространение, публикация и копирование существенных частей кода и ресурсов;
 - использование фирменной символики и материалов в коммерческих целях.
 
-Для разрешений и вопросов: https://github.com/Mihailchik/flutter_timer_Test/issues
+Для разрешений и вопросов: https://github.com/Mihailchik/FitTimer/issues
 
 Third-party components: Phosphor Icons (MIT, see `assets/fonts/LICENSE-Phosphor.txt`).
 

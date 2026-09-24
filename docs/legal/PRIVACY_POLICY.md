@@ -16,7 +16,7 @@ FitTimer — таймер для интервальных тренировок. 
 
 **Изменения.** Если политика изменится, новая версия появится на этой странице с новой датой.
 
-**Контакты.** Вопросы и обращения: https://github.com/Mihailchik/flutter_timer_Test/issues
+**Контакты.** Вопросы и обращения: https://github.com/Mihailchik/FitTimer/issues
 
 ---
 
@@ -38,4 +38,4 @@ FitTimer is an interval training timer. It needs no account, shows no ads and do
 
 **Changes.** If this policy changes, the new version will be published on this page with a new date.
 
-**Contact.** Questions and requests: https://github.com/Mihailchik/flutter_timer_Test/issues
+**Contact.** Questions and requests: https://github.com/Mihailchik/FitTimer/issues
