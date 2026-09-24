@@ -127,11 +127,16 @@ class Workout {
   final List<WorkBlock> blocks;
   final DateTime updatedAt;
 
+  /// Shown as a quick-access chip on the home screen, alongside the
+  /// built-in templates, so a favourite workout starts in one tap.
+  final bool pinned;
+
   const Workout({
     required this.id,
     required this.name,
     required this.blocks,
     required this.updatedAt,
+    this.pinned = false,
   });
 
   factory Workout.create({required String name, List<WorkBlock> blocks = const []}) =>
@@ -141,12 +146,13 @@ class Workout {
   int get intervalCount => blocks.fold(0, (sum, b) => sum + b.intervalCount);
   bool get isEmpty => totalSeconds == 0;
 
-  Workout copyWith({String? name, List<WorkBlock>? blocks}) {
+  Workout copyWith({String? name, List<WorkBlock>? blocks, bool? pinned}) {
     return Workout(
       id: id,
       name: name ?? this.name,
       blocks: blocks ?? this.blocks,
       updatedAt: DateTime.now(),
+      pinned: pinned ?? this.pinned,
     );
   }
 
@@ -162,6 +168,7 @@ class Workout {
         'name': name,
         'updatedAt': updatedAt.toIso8601String(),
         'blocks': blocks.map((b) => b.toJson()).toList(),
+        'pinned': pinned,
       };
 
   factory Workout.fromJson(Map<String, dynamic> json) => Workout(
@@ -171,5 +178,6 @@ class Workout {
         blocks: ((json['blocks'] as List?) ?? const [])
             .map((e) => WorkBlock.fromJson(e as Map<String, dynamic>))
             .toList(),
+        pinned: json['pinned'] as bool? ?? false,
       );
 }

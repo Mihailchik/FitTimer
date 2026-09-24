@@ -31,7 +31,7 @@ void main() {
 
     final heading = tester.widget<Text>(find.text('My workouts'));
     expect(heading.style!.fontSize, 18);
-    expect(find.ancestor(of: find.text('Templates'), matching: find.byType(Surface)),
+    expect(find.ancestor(of: find.text('Quick workouts'), matching: find.byType(Surface)),
         findsOneWidget);
 
     final iconCenters = [for (final icon in find.descendant(of: tab, matching: find.byType(Icon)).evaluate())

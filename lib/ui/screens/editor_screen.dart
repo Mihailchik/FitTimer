@@ -80,6 +80,8 @@ class _Editor extends StatelessWidget {
     switch (action) {
       case 'rename':
         await _rename(context);
+      case 'pin':
+        app.saveWorkout(workout.copyWith(pinned: !workout.pinned));
       case 'duplicate':
         final copy = workout.duplicate(s.copyOf(workout.name));
         app.saveWorkout(copy);
@@ -148,6 +150,8 @@ class _Editor extends StatelessWidget {
                         title: workout.name,
                         items: [
                           OptionSheetItem('rename', s.rename),
+                          OptionSheetItem('pin',
+                              workout.pinned ? s.unpinFromQuick : s.pinToQuick),
                           OptionSheetItem('duplicate', s.duplicate),
                           OptionSheetItem('delete', s.deleteWorkout,
                               destructive: true),

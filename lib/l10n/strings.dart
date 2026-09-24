@@ -29,7 +29,9 @@ class S {
   String get prep => _('Подготовка', 'Get ready');
   String get rounds => _('Раунды', 'Rounds');
   String get start => _('Старт', 'Start');
-  String get templates => _('Шаблоны', 'Templates');
+  String get templates => _('Быстрые тренировки', 'Quick workouts');
+  String get pinToQuick => _('В быстрые тренировки', 'Add to quick workouts');
+  String get unpinFromQuick => _('Убрать из быстрых', 'Remove from quick workouts');
   String get myWorkouts => _('Мои тренировки', 'My workouts');
   String get newWorkout => _('Новая тренировка', 'New workout');
   String get emptyWorkouts => _(

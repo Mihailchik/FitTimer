@@ -210,6 +210,10 @@ class _QuickStartCard extends StatelessWidget {
                   _TemplateChoice(template: template),
                   const SizedBox(width: 8),
                 ],
+                for (final w in app.workouts.where((w) => w.pinned)) ...[
+                  _PinnedWorkoutChoice(workout: w),
+                  const SizedBox(width: 8),
+                ],
               ],
             ),
           ),
@@ -294,6 +298,89 @@ class _TemplateChoice extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
           child:
               Text(template.title, style: T.body(14, weight: 700, color: c.tx)),
+        ),
+      ),
+    );
+  }
+}
+
+/// A user workout pinned to the quick-access row (see [Workout.pinned]).
+/// Same shape as [_TemplateChoice], but it already exists, so the preview
+/// offers "Edit" instead of "Save and edit".
+class _PinnedWorkoutChoice extends StatelessWidget {
+  const _PinnedWorkoutChoice({required this.workout});
+  final Workout workout;
+
+  void _open(BuildContext context) {
+    final s = S.of(context);
+    final c = AppColors.of(context);
+    showModalBottomSheet(
+      context: context,
+      showDragHandle: true,
+      sheetAnimationStyle: AnimationStyle.noAnimation,
+      isScrollControlled: true,
+      useSafeArea: true,
+      builder: (sheet) => SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(
+                AppLayout.pageInset, 0, AppLayout.pageInset, 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(workout.name, style: T.display(28, color: c.tx)),
+                const SizedBox(height: 4),
+                Text(
+                    '${formatClock(workout.totalSeconds)} · ${s.blocksCount(workout.blocks.length)}',
+                    style: T.body(15, color: c.mu)),
+                const SizedBox(height: 14),
+                PhaseStrip(workout: workout, height: 10),
+                const SizedBox(height: 20),
+                PrimaryButton(
+                  label: '${s.start} · ${formatClock(workout.totalSeconds)}',
+                  onPressed: workout.isEmpty
+                      ? null
+                      : () {
+                          Navigator.pop(sheet);
+                          openRun(context, workout);
+                        },
+                ),
+                const SizedBox(height: 10),
+                SecondaryButton(
+                  label: s.edit,
+                  icon: AppIcons.edit,
+                  onPressed: () {
+                    Navigator.pop(sheet);
+                    Navigator.of(context).push(
+                        appRoute((_) => EditorScreen(workoutId: workout.id)));
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final c = AppColors.of(context);
+    return Material(
+      color: c.s2,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14),
+          side: BorderSide(color: c.line)),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(14),
+        onTap: () => _open(context),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          child: Text(workout.name,
+              style: T.body(14, weight: 700, color: c.tx),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis),
         ),
       ),
     );
